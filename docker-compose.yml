@@ -1,0 +1,15 @@
+version: "3.7"
+services:
+  redis_db:
+    image: 'redis:7.0-rc3'
+    ports:
+        - "6379:6379"
+    environment:
+        - REDIS_PASS=webcast
+        - REDIS_APPENDONLY=yes
+        - REDIS_APPENDFSYNC=always
+    volumes:
+        - ./redis-data:/data
+    deploy:
+        replicas: 1
+    restart: always
