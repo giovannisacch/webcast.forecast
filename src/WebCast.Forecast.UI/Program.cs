@@ -1,3 +1,5 @@
+using WebCast.Forecast.Application;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +8,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.InjectApplicationDependencies();
+builder.Services.InjectInfraDependencies(builder.Configuration);
 
 var app = builder.Build();
 

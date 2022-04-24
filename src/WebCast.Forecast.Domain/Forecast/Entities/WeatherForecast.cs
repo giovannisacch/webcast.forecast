@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WebCast.Forecast.Domain.Common.CustomExceptions;
+﻿using WebCast.Forecast.Domain.Common.CustomExceptions;
 
 namespace WebCast.Forecast.Domain.Forecast.Entities
 {
     public class WeatherForecast
     {
         public double Temperature { get; private set; }
-        public DateOnly Date { get; private set; }
+        public DateTime Date { get; private set; }
 
         private static readonly Dictionary<double, string> MaxTemperaturesPerSummaryCrescentOrdered = new Dictionary<double, string>()
         {
@@ -21,14 +16,14 @@ namespace WebCast.Forecast.Domain.Forecast.Entities
 
         }
 
-        public WeatherForecast(int temperature, DateOnly date)
+        public WeatherForecast(double temperature, DateTime date)
         {
             SetTemperature(temperature);
             SetDate(date);
         }
-        public void SetDate(DateOnly date)
+        public void SetDate(DateTime date)
         {
-            var actualDate = DateOnly.FromDateTime(DateTime.Now.Date);
+            var actualDate = DateTime.Now.Date;
             if (actualDate.CompareTo(date) > 0)
                 throw new DomainLogicException(ErrorConstants.PAST_FOREACAST_DATE);
             Date = date;
@@ -36,23 +31,23 @@ namespace WebCast.Forecast.Domain.Forecast.Entities
         }
         public void SetTemperature(double temperature)
         {
-            if (-60 < temperature || 60 > temperature)
+            if (-60 > temperature || 60 < temperature)
                 throw new DomainLogicException(ErrorConstants.INVALID_TEMPERATURE);
             Temperature = temperature;
         }
         public string GetTemperatureSummary()
         {
-            return Temperature.ToString();
-        }
-        public override string ToString()
-        {
             for (int i = 0; i < MaxTemperaturesPerSummaryCrescentOrdered.Count; i++)
             {
                 var currentElement = MaxTemperaturesPerSummaryCrescentOrdered.ElementAt(i);
-                if(Temperature <= currentElement.Key)
+                if (Temperature <= currentElement.Key)
                     return currentElement.Value;
             }
             return "Invalid Weather";
+        }
+        public override string ToString()
+        {
+            return GetTemperatureSummary();
         }
     }
 }

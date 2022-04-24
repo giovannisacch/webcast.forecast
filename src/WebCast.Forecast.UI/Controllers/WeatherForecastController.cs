@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using WebCast.Forecast.Application.Interfaces;
 
 namespace WebCast.Forecast.UI.Controllers
 {
@@ -8,22 +9,25 @@ namespace WebCast.Forecast.UI.Controllers
     {
        
         private readonly ILogger<WeatherForecastController> _logger;
+        private readonly IWeatherForecastApplicationService _weatherForecastApplicationService;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, IWeatherForecastApplicationService weatherForecastApplicationService)
         {
             _logger = logger;
+            _weatherForecastApplicationService = weatherForecastApplicationService;
         }
 
-        [HttpGet(Name = "GetWeatherForecast")]
-        public IEnumerable<WeatherForecast> Get()
+        [HttpPost("")]
+        public async Task<ActionResult> Post(double temperature, DateTime date)
         {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
+            await _weatherForecastApplicationService.AddWeatherForecast(temperature, date);
+            return Ok();
+        }
+
+        [HttpGet("WeekForecast")]
+        public async Task<IActionResult> Get()
+        {
+            return Ok(await _weatherForecastApplicationService.GetNextSevenDaysForecast());
         }
     }
 }
