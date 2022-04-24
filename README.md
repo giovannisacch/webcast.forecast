@@ -1,4 +1,7 @@
 # webcast.forecast
+To run this application you just need to run docker-compose up on our root folder
+Swagger on http://localhost:49158/swagger/index.html
+
 
 About DataBase decisions:
 - I decided to use redis for this kind of data, considering that i will not need to store a history and will be easy to delete with redis TTL
