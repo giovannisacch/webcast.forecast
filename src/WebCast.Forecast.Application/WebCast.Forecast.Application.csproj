@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\WebCast.Forecast.Infra\WebCast.Forecast.Infra.csproj" />
+    <ProjectReference Include="..\WebCast.Forecast.Infra\WebCast.Forecast.Infra.csproj" />
     <ProjectReference Include="..\WebCast.Forecast.Domain\WebCast.Forecast.Domain.csproj" />
   </ItemGroup>
 

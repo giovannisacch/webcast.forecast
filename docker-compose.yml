@@ -1,11 +1,26 @@
 version: "3.7"
 services:
-  redis_db:
+  webcas_api:
+    build:
+        dockerfile: src/WebCast.Forecast.UI/.
+        context: .
+    environment:
+          ASPNETCORE_URLS: "http://+:80"
+          ASPNETCORE_ENVIRONMENT: "Development"
+          DOTNET_RUNNING_IN_CONTAINER: "true"
+    ports: 
+        - "49158:80"
+        - "49157:443"
+    networks:
+        - webcast-network
+
+  redisdb:
     image: 'redis:7.0-rc3'
     ports:
         - "6379:6379"
+    networks:
+        - webcast-network
     environment:
-        - REDIS_PASS=webcast
         - REDIS_APPENDONLY=yes
         - REDIS_APPENDFSYNC=always
     volumes:
@@ -13,3 +28,10 @@ services:
     deploy:
         replicas: 1
     restart: always
+
+networks: 
+    webcast-network:
+        driver: bridge
+        ipam:
+            config:
+                - subnet: 172.26.0.0/16

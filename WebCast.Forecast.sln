@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebCast.Forecast.Applicatio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebCast.Forecast.Domain", "src\WebCast.Forecast.Domain\WebCast.Forecast.Domain.csproj", "{329AF414-9E0C-406E-929F-F41A8C9B1D04}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebCast.Forecast.Infra", "WebCast.Forecast.Infra\WebCast.Forecast.Infra.csproj", "{76C12649-E259-4AC0-A59D-6754D5BDAF47}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebCast.Forecast.Infra", "src\WebCast.Forecast.Infra\WebCast.Forecast.Infra.csproj", "{76C12649-E259-4AC0-A59D-6754D5BDAF47}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebCast.Forecast.UnitTest", "src\WebCast.Forecast.UnitTest\WebCast.Forecast.UnitTest.csproj", "{0B2BC80B-ACFB-4306-9780-C8CB0F62406D}"
 EndProject
