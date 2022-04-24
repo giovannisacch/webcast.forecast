@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using WebCast.Forecast.Application.Interfaces;
+using WebCast.Forecast.Application.Models;
 
 namespace WebCast.Forecast.UI.Controllers
 {
@@ -18,9 +19,9 @@ namespace WebCast.Forecast.UI.Controllers
         }
 
         [HttpPost("")]
-        public async Task<ActionResult> Post(double temperature, DateTime date)
+        public async Task<ActionResult> Post(WeatherForecastRequestModel weatherForecastRequest)
         {
-            await _weatherForecastApplicationService.AddWeatherForecast(temperature, date);
+            await _weatherForecastApplicationService.AddWeatherForecast(weatherForecastRequest.Temperature, weatherForecastRequest.Date);
             return Ok();
         }
 
