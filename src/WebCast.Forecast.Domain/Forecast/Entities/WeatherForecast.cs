@@ -11,10 +11,6 @@ namespace WebCast.Forecast.Domain.Forecast.Entities
         {
             {-10, "Freezing"}, {5, "Bracing"}, {10, "Chilly"}, {14, "Cool"}, {18, "Mild"}, {22, "Warm"}, {26, "Balmy"}, {32, "Hot"}, {42, "Sweltering"}, {60, "Scorching"}
         };
-        public WeatherForecast()
-        {
-
-        }
 
         public WeatherForecast(double temperature, DateTime date)
         {
