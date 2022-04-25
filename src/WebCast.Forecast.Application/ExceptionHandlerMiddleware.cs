@@ -23,6 +23,7 @@ namespace WebCast.Forecast.Application
             catch (DomainLogicException domainException)
             {
                 context.Response.StatusCode = 400;
+                context.Response.ContentType = "application/json";
                 await context.Response.WriteAsync(JsonSerializer.Serialize(new ErrorResponseModel(domainException.Message)));
             }
             catch(Exception exception)
